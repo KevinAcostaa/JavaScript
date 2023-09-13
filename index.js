@@ -1,97 +1,57 @@
 
+// juego para adivinar un número
 
-    //Saludamos al usuario 
-    let saludo = alert("Bienvenidos al juego de adivinar el nombre correcto")
+let numeroUsuario;
+
+let numeroAleatorio = Math.round(Math.random() * 10 + 1); 
+
+alert("Bienvenido al juego de adivinar un número, tienes 3 intentos para adivinar el número correcto entre 1 y 10")
+let nombreUsuario = prompt("Cúal es tu nombre?");
 
 
+let intentos = 0;
 
-    // Solicitamos el nombre al Usuario
-    function ingresarNombre() {
-        let nombreUsuario;
+
+function pedirNumeroUsuario() {
+
+    numeroUsuario = parseInt(prompt("Introduce el número del 1 al 10"));
+
+    intentos++;
+    if (3 - intentos > 0 && numeroUsuario !== numeroAleatorio){
+
+        alert("Te quedan " + (3 - intentos) + " intentos");
+
+    };
     
-        while (!nombreUsuario) {
-            nombreUsuario = prompt("Primero dinos ¿Cuál es tú nombre?");
-        }
-        
-        alert("¡Hola, " + nombreUsuario + "! Estas listo para jugar?. Adelante!!");
-        }
-        
-        ingresarNombre();
 
-// Función para adivinar el nombre
-function adivinarNombre() {
-    const nombreCorrecto = "Kevin";
-    let intentos = 3;
-    while (intentos > 0) {
-        
-        
-    let nombreUsuario = prompt("Debes adivinar el nombre: (Te quedan " + intentos + " intentos)");
+};
 
+// Funcion que verifica si el numero introducido es correcto
 
-    if (nombreUsuario.toLowerCase() === nombreCorrecto.toLowerCase()) {
+function verificarNumero(numIngresado) {
+    if(numIngresado < numeroAleatorio) {
+        alert("el número es mayor")
 
-        alert("¡Adivinaste! El nombre correcto es " + nombreCorrecto);
-        return;
-    }
-    
-    else {
-        alert("El nombre ingresado no es correcto. Te quedan " + (intentos - 1) + " intentos.");
-        intentos--;
-    }
+    }else if (numIngresado > numeroAleatorio){
+        alert("El número es menor")
+    }else{
+        alert("Felicidades " + nombreUsuario + " has acertado el número en " + intentos + " intentos")
+    };
 
-    }
-    alert(
-    "Agotaste tus intentos. El nombre correcto era " + nombreCorrecto);
-}
+};
 
-adivinarNombre();
+// Función que verifica el número de intentos
 
+const verificarIntentos = () => {
+    if (intentos >= 3){
+        alert("Lo siento " + nombreUsuario + " has perdido, no te quedan más intentos, el número a adivinar era " + numeroAleatorio)
+    };
+};
 
+// Bucles
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ESTO LO DEJO ACÁ SOLAMENTE PARA MI
-
-
-
-// let apellido = "Acosta";
-
-// console.log(apellido);
-
-// let edad = prompt("Ingrese su edad");
-
-// alert("la edad ingresada es: " + edad);
-
-// ============== Esctrucura ciclo FOR =====================
-
-// for (let i = 0; i <= 10; i++){
-
-//     console.log(i);
-
-// }
-
-// ======== ALGORITMO PARA CALCULAR LA TABLA DE MULTIPLICAR =====
-
-// let ingresarNumero = parseInt(prompt("Ingresar un número"));
-
-// for(let i = 1; i <=10; i++){
-//         let resultado = ingresarNumero * i;
-//         alert(ingresarNumero + " X " + i + "=" + resultado)
-// }
+while (numeroUsuario !== numeroAleatorio && intentos < 3) {
+    pedirNumeroUsuario();
+    verificarNumero(numeroUsuario);
+    verificarIntentos();
+};
