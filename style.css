@@ -1,0 +1,38 @@
+
+body{
+    margin: 0;
+}
+.botones{
+
+    padding: 10px;
+    text-align: center;
+}
+
+.container_title{
+    background-color: #89b4d8;
+    padding: 25px;
+}
+
+.mititle{
+
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+    padding: 50px;
+}
+
+.listContainer{
+    padding: 80px;
+    background-color: #afd4f1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.footer_conteiner{
+    background-color: #89b4d8;
+    padding: 100px;
+    margin: 0;
+
+}

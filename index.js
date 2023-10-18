@@ -1,6 +1,10 @@
 // Simulador de empleados
 
-// Hacemos una clase empleado
+
+
+
+
+// Hacemos una clase empleado y/o function constructora
 class Empleado {
     constructor(nombre, puesto, edad, sueldo = 0) {
     this.nombre = nombre;
@@ -17,12 +21,12 @@ class Empleado {
     }
 
     
-cambiarNombre(nombre) {
+    cambiarNombre(nombre) {
     this.nombre = nombre;
     alert("EL nombre a sido cambiado con éxito");
 }
 
-cambiarEdad(edad) {
+    cambiarEdad(edad) {
     if (isNaN(edad)) {
         return alert("La edad debe ser un valor numérico");
     }
@@ -35,6 +39,13 @@ cambiarEdad(edad) {
     alert("El puesto a sido cambiado con éxito");
     }
 }
+
+
+// Cambio de titulo 
+const titulo = document.getElementById("miTitulo");
+
+miTitulo.innerHTML = "Administrador de empleados";
+
 
 
 const mostrarEmpleados = (empleados) => {
@@ -65,6 +76,38 @@ let empleados = [
 
 mostrarEmpleados(empleados);
 
+
+
+const enJson = JSON.stringify(empleados);
+
+localStorage.setItem("empleados", enJson);
+
+const jsonData = localStorage.getItem("enJson");
+
+const miObjeto = JSON.parse(jsonData);
+
+const contenedor = document.getElementById("contenedorDatos");
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    
+    miObjeto.forEach(empleado => {
+        const elemento = document.createElement('p');
+        elemento.textContent = `${empleado.nombre} ${empleado.puesto} ${empleado.edad} ${empleado.sueldo}`;
+        contenedor.appendChild(elemento);
+    });
+});
+
+
+
+
+
+const agregarBtn = document.getElementById("agregar");
+    agregarBtn.addEventListener("click", () => {agregarEmpleado();});
+
+
 // Función para crear y agregar empleados al array
 
 const agregarEmpleado = () => {
@@ -74,7 +117,7 @@ const agregarEmpleado = () => {
     let edad = parseInt(prompt("Ingrese la edad del empleado"));
 
 
-    let empleado = new Empleado(nombre, edad, puesto);
+    let empleado = new Empleado(nombre, puesto, edad);
 
   // Agregamos el empleado en el array empelados
     empleados.push(empleado);
@@ -82,6 +125,16 @@ const agregarEmpleado = () => {
 
     mostrarEmpleados(empleados);
 };
+
+
+
+
+
+
+
+
+const Btn2 = document.getElementById("eliminar");
+    Btn2.addEventListener("click", () => {eliminarEmpleado();});
 
 // Función para eliminar empleados
 const eliminarEmpleado = () => {
@@ -103,6 +156,10 @@ const eliminarEmpleado = () => {
     alert("Eliminación cancelada");
     }
 };
+
+
+
+
 
 const editarEmpleado = () => {
     const empleadoBuscado = empleadoExiste();
@@ -135,6 +192,14 @@ const editarEmpleado = () => {
     mostrarEmpleados(empleados);
 };
 
+const Btn3 = document.getElementById("editar");
+    Btn3.addEventListener("click", () => {editarEmpleado();});
+
+
+
+
+
+
 const pagarSueldoEmpleado = () => {
     const empleadoBuscado = empleadoExiste();
     if (!empleadoBuscado) return;
@@ -149,6 +214,12 @@ const pagarSueldoEmpleado = () => {
 
     mostrarEmpleados(empleados);
 };
+
+
+
+const Btn4 = document.getElementById("pagarS");
+    Btn4.addEventListener("click", () => {pagarSueldoEmpleado();});
+
 
 // Función para verificar si el empleado existe
 
@@ -169,34 +240,70 @@ const empleadoExiste = () => {
     return empleados[indice];
 };
 
-let encendido = true; 
 
-// Ciclo while que maneja la aplicación
-while (encendido) {
-    alert(
-    "Menú principal:\n1 - Agregar un empleado\n2 - Eliminar un empleado\n3 - Modificar empleado\n4 - Pagar sueldo\n5 - Apagar"
-    );
-    let opcion = parseInt(prompt("Ingrese una opción"));
 
-    switch (opcion) {
-    case 1:
-        agregarEmpleado();
-        break;
-    case 2:
-        eliminarEmpleado();
-        break;
-    case 3:
-        editarEmpleado();
-        break;
-    case 4:
-        pagarSueldoEmpleado();
-        break;
-    case 5:
-        encendido = false;
-        break;
-        default:
-    alert("Inserte una opción correcta");
-    }
-}
 
-alert("Gracias vuelva pronto");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let encendido = true; 
+
+
+// while (encendido) {
+
+//     let opcion = parseInt(prompt("Ingrese una opción"));
+
+//     switch (opcion) {
+//     case 1:
+//         agregarEmpleado();
+//         break;
+//     case 2:
+//         eliminarEmpleado();
+//         break;
+//     case 3:
+//         editarEmpleado();
+//         break;
+//     case 4:
+//         pagarSueldoEmpleado();
+//         break;
+//     case 5:
+//         encendido = false;
+//         break;
+//         default:
+//     alert("Inserte una opción correcta");
+//     }
+// }
+
+//alert("Gracias vuelva pronto");
